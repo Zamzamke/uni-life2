@@ -14,10 +14,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.http import JsonResponse
 from django.contrib import admin
 from django.urls import path, include
 
+def health_check(request):
+    return JsonResponse({"status": "ok", "service": "live"})
+
+
 urlpatterns = [
+     path("", health_check),
     path('admin/', admin.site.urls),
     path('api/', include('accounts.urls')),
     path('api/', include('core.urls')),
