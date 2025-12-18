@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: maisha-uni-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn maisha_uni.wsgi:application
